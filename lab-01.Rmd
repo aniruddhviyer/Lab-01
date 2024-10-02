@@ -10,7 +10,7 @@ output: html_document
 
 ```{r load-packages, message=FALSE}
 # Do not edit this code chunk!
-library(tidyverse) 
+library(tidyverse)
 ```
 
 ```{r load-data, message=FALSE}
