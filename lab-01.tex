@@ -1,0 +1,632 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Lab 01 - UK Attractions},
+  pdfauthor={Aniruddh Iyer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lab 01 - UK Attractions}
+\author{Aniruddh Iyer}
+\date{2024-10-02}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Load packages and data}\label{load-packages-and-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Do not edit this code chunk!}
+\FunctionTok{library}\NormalTok{(tidyverse) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Do not edit this code chunk!}
+\NormalTok{visitors }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/UK{-}visitor{-}numbers.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Wrangling Data}\label{wrangling-data}
+
+\subsection{Question 1}\label{question-1}
+
+\emph{How many tourist attractions are there in the data set?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1   348
+\end{verbatim}
+
+\subsubsection{Exercise a.}\label{exercise-a.}
+
+\emph{Create a frequency table of the number of tourist attractions in
+the data set by \texttt{region}.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Delete the comment \textquotesingle{}\#\textquotesingle{} symbol at the start of the next line and complete the code. }
+
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(admission)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   admission     n
+##   <chr>     <int>
+## 1 Charged      38
+## 2 Free        128
+## 3 Members     182
+\end{verbatim}
+
+\subsubsection{Exercise b.}\label{exercise-b.}
+
+\emph{Create a frequency table by \texttt{admission} and
+\texttt{setting}.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Delete the comment \textquotesingle{}\#\textquotesingle{} symbol at the start of the next line and complete the code.}
+
+\NormalTok{visitors }\SpecialCharTok{|\textgreater{}} \FunctionTok{count}\NormalTok{(region)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 2
+##    region                       n
+##    <chr>                    <int>
+##  1 East Midlands                9
+##  2 East of England             26
+##  3 London                      39
+##  4 North East                  25
+##  5 North West                  21
+##  6 Northern Ireland             9
+##  7 Scotland                    97
+##  8 South East                  34
+##  9 South West                  30
+## 10 Wales                        2
+## 11 West Midlands               35
+## 12 Yorkshire and the Humber    21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(admission, setting)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+##   admission setting     n
+##   <chr>     <chr>   <int>
+## 1 Charged   I          21
+## 2 Charged   M          12
+## 3 Charged   O           5
+## 4 Free      I          77
+## 5 Free      M           8
+## 6 Free      O          43
+## 7 Members   I          23
+## 8 Members   M         106
+## 9 Members   O          53
+\end{verbatim}
+
+\subsection{Question 2}\label{question-2}
+
+\emph{What are the variable data types?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(visitors}\SpecialCharTok{$}\NormalTok{n\_2022)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise\_all}\NormalTok{(class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 6
+##   attraction n_2021  n_2022  admission setting   region   
+##   <chr>      <chr>   <chr>   <chr>     <chr>     <chr>    
+## 1 character  numeric numeric character character character
+\end{verbatim}
+
+\subsection{Question 3}\label{question-3}
+
+\emph{Which attraction had the most number of visitors in 2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_2022))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 348 x 6
+##    attraction                             n_2021 n_2022 admission setting region
+##    <chr>                                   <dbl>  <dbl> <chr>     <chr>   <chr> 
+##  1 The Crown Estate, Windsor Great Park   5.40e6 5.64e6 Free      O       South~
+##  2 Natural History Museum (South Kensing~ 1.57e6 4.65e6 Free      I       London
+##  3 The British Museum                     1.33e6 4.10e6 Free      I       London
+##  4 Tate Modern                            1.16e6 3.88e6 Free      I       London
+##  5 Southbank Centre                       7.87e5 2.95e6 Free      I       London
+##  6 The National Gallery                   7.09e5 2.73e6 Free      I       London
+##  7 V&A South Kensington                   8.58e5 2.37e6 Free      I       London
+##  8 Somerset House                         9.85e5 2.35e6 Free      M       London
+##  9 Science Museum                         9.56e5 2.33e6 Free      I       London
+## 10 Tower of London                        5.26e5 2.02e6 Members   M       London
+## # i 338 more rows
+\end{verbatim}
+
+\subsubsection{Exercise c.}\label{exercise-c.}
+
+\emph{What are the top 10 most visited attractions in 2021?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_2021)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 6
+##    attraction                             n_2021 n_2022 admission setting region
+##    <chr>                                   <dbl>  <dbl> <chr>     <chr>   <chr> 
+##  1 The Crown Estate, Windsor Great Park   5.40e6 5.64e6 Free      O       South~
+##  2 Royal Botanic Gardens Kew              1.96e6 1.96e6 Members   M       London
+##  3 Natural History Museum (South Kensing~ 1.57e6 4.65e6 Free      I       London
+##  4 RHS Garden Wisley                      1.41e6 1.49e6 Members   O       South~
+##  5 The British Museum                     1.33e6 4.10e6 Free      I       London
+##  6 Tate Modern                            1.16e6 3.88e6 Free      I       London
+##  7 Somerset House                         9.85e5 2.35e6 Free      M       London
+##  8 Science Museum                         9.56e5 2.33e6 Free      I       London
+##  9 Jeskyns Community Woodland             8.79e5 4.47e5 Free      O       South~
+## 10 V&A South Kensington                   8.58e5 2.37e6 Free      I       London
+\end{verbatim}
+
+\subsection{Question 4}\label{question-4}
+
+\emph{What is the admission charge for the
+\texttt{"National\ Museum\ of\ Scotland"}?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(attraction }\SpecialCharTok{==} \StringTok{"National Museum of Scotland"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 6
+##   attraction                  n_2021  n_2022 admission setting region  
+##   <chr>                        <dbl>   <dbl> <chr>     <chr>   <chr>   
+## 1 National Museum of Scotland 660741 1973751 Free      I       Scotland
+\end{verbatim}
+
+\subsubsection{Exercise d.}\label{exercise-d.}
+
+\emph{Which attraction had exactly 565,772 visitors in 2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(n\_2022 }\SpecialCharTok{==} \DecValTok{565772}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 6
+##   attraction                        n_2021 n_2022 admission setting region    
+##   <chr>                              <dbl>  <dbl> <chr>     <chr>   <chr>     
+## 1 Knowsley Safari and Knowsley Hall     NA 565772 Members   M       North West
+\end{verbatim}
+
+\subsubsection{Exercise e.}\label{exercise-e.}
+
+\emph{How many attraction had more than 1 million visitors in 2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(n\_2022 }\SpecialCharTok{\textgreater{}} \DecValTok{1000000}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    22
+\end{verbatim}
+
+\subsection{Question 5}\label{question-5}
+
+\emph{How many \texttt{"O"}utside attractions are there in the
+\texttt{"Yorkshire\ and\ the\ Humber"} region that gives
+\texttt{"Members"} free admission, which had more than 100,000 visitors
+in 2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}
+\NormalTok{    setting }\SpecialCharTok{==} \StringTok{"O"}\NormalTok{,}
+\NormalTok{    region }\SpecialCharTok{==} \StringTok{"Yorkshire and the Humber"}\NormalTok{,}
+\NormalTok{    admission }\SpecialCharTok{==} \StringTok{"Members"}\NormalTok{,}
+\NormalTok{    n\_2022 }\SpecialCharTok{\textgreater{}=} \DecValTok{100000}
+\NormalTok{    ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1     3
+\end{verbatim}
+
+\subsubsection{Exercise f.}\label{exercise-f.}
+
+\emph{How many attractions had between 50,000 and 100,000 visitors in
+2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}
+\NormalTok{    n\_2022 }\SpecialCharTok{\textgreater{}} \DecValTok{50000}\NormalTok{,}
+\NormalTok{    n\_2022 }\SpecialCharTok{\textless{}}\DecValTok{100000}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    50
+\end{verbatim}
+
+\subsubsection{Exercise g.}\label{exercise-g.}
+
+\emph{How many regions have more than 50 tourist attraction in the data
+set? (Hint: You will need to tabulate the data before filtering.)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(region) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   region       n
+##   <chr>    <int>
+## 1 Scotland    97
+\end{verbatim}
+
+\section{Summarising Data}\label{summarising-data}
+
+\subsection{Question 6}\label{question-6}
+
+\emph{What are the mean and median visitor numbers in 2022 across all
+attractions?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_2022 =} \FunctionTok{mean}\NormalTok{(n\_2022),}
+    \AttributeTok{med\_2022 =} \FunctionTok{median}\NormalTok{(n\_2022)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   mean_2022 med_2022
+##       <dbl>    <dbl>
+## 1   351942.  184640.
+\end{verbatim}
+
+\subsubsection{Exercise h.}\label{exercise-h.}
+
+\emph{Perform the same calculation for the 2021 admissions data.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_2021 =} \FunctionTok{mean}\NormalTok{(n\_2021, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{median\_2021 =} \FunctionTok{median}\NormalTok{(n\_2021, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   mean_2021 median_2021
+##       <dbl>       <dbl>
+## 1   232431.      129829
+\end{verbatim}
+
+All values in the output are \texttt{NA}!
+
+\subsubsection{Exercise i.}\label{exercise-i.}
+
+\emph{What does \texttt{NA} stand for and why are you getting this as
+your answer to the previous question.}
+
+\textbf{NA is used to represent variables whose data is ``not
+available''}
+
+\subsubsection{Exercise j.}\label{exercise-j.}
+
+\emph{Look at the help pages for the \texttt{mean()} and
+\texttt{median()} commands to see what the input argument \texttt{na.rm}
+does. Edit your code from exercise h so that it computes the summary
+statistics where data is available.}
+
+\textbf{Write your answer here}
+
+\subsection{Question 7}\label{question-7}
+
+\emph{Which setting (inside, outside or mixed) has the largest mean
+visitor numbers in 2022?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(setting) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_2022 =} \FunctionTok{mean}\NormalTok{(n\_2022),}
+    \AttributeTok{med\_2022 =} \FunctionTok{median}\NormalTok{(n\_2022)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   setting mean_2022 med_2022
+##   <chr>       <dbl>    <dbl>
+## 1 I         488522.  204823 
+## 2 M         284800.  198374.
+## 3 O         272077.  127708
+\end{verbatim}
+
+\subsubsection{Exercise k.}\label{exercise-k.}
+
+\emph{Observe in question 6 that the mean statistics across all settings
+are much larger than the corresponding median statistics. Discuss in
+your group what this suggests about the data.}
+
+\textbf{Write your answer here}
+
+\subsection{Question 8}\label{question-8}
+
+\emph{What is the interquartile range (the width of the middle 50\% of
+data set between the lower and upper quartiles) the for each of the four
+nations of the UK?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors\_with\_nations }\OtherTok{\textless{}{-}}\NormalTok{ visitors }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{nation =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{      region }\SpecialCharTok{==} \StringTok{"Northern Ireland"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Northern Ireland"}\NormalTok{,}
+\NormalTok{      region }\SpecialCharTok{==} \StringTok{"Scotland"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Scotland"}\NormalTok{,}
+\NormalTok{      region }\SpecialCharTok{==} \StringTok{"Wales"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Wales"}\NormalTok{,}
+      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"England"}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\NormalTok{visitors\_with\_nations }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(nation) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{IQR\_2022 =} \FunctionTok{IQR}\NormalTok{(n\_2022)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   nation           IQR_2022
+##   <chr>               <dbl>
+## 1 England           350362.
+## 2 Northern Ireland  311046 
+## 3 Scotland          127986 
+## 4 Wales             103368.
+\end{verbatim}
+
+\subsubsection{Exercise l.}\label{exercise-l.}
+
+\emph{How many tourist attractions are there in each of the 4 nations?
+From this, discuss in your group how reliable you think the
+inter-quartile estimates are.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors\_with\_nations }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(nation) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+## # Groups:   nation [4]
+##   nation               n
+##   <chr>            <int>
+## 1 England            240
+## 2 Northern Ireland     9
+## 3 Scotland            97
+## 4 Wales                2
+\end{verbatim}
+
+\section{Challenging Exercises}\label{challenging-exercises}
+
+\subsubsection{Exercise m.}\label{exercise-m.}
+
+\emph{Within each of the 4 nations, what is the proportion of tourist
+attractions that have free admission for all visitors?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitors\_with\_nations }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{select}\NormalTok{(nation, admission) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{group\_by}\NormalTok{(nation) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{tot\_atrcn =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{fr\_atrcn =} \FunctionTok{sum}\NormalTok{(admission }\SpecialCharTok{==} \StringTok{"Free"}\NormalTok{),}
+    \AttributeTok{ratip =}\NormalTok{ fr\_atrcn }\SpecialCharTok{*}\DecValTok{100} \SpecialCharTok{/}\NormalTok{ tot\_atrcn}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   nation           tot_atrcn fr_atrcn ratip
+##   <chr>                <int>    <int> <dbl>
+## 1 England                240       93  38.8
+## 2 Northern Ireland         9        1  11.1
+## 3 Scotland                97       34  35.1
+## 4 Wales                    2        0   0
+\end{verbatim}
+
+\subsubsection{Exercise n.}\label{exercise-n.}
+
+\emph{Calculate the percentage change in visitor admissions from 2021 to
+2022. Of the tourist attractions in Scotland, sort into increasing
+numerical order the types of admission charges based on the mean
+percentage change in visitor numbers.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Write your code here \%\textgreater{}\%}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

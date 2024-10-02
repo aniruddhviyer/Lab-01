@@ -1,6 +1,6 @@
 ---
 title: "Lab 01 - UK Attractions"
-author: "INSERT NAME HERE"
+author: "Aniruddh Iyer"
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -37,7 +37,7 @@ _Create a frequency table of the number of tourist attractions in the data set b
 ```{r Ex_a}
 # Delete the comment '#' symbol at the start of the next line and complete the code. 
 
-#visitors %>% count(_____)
+visitors %>% count(admission)
 ```
 
 ### Exercise b.
@@ -47,7 +47,8 @@ _Create a frequency table by `admission` and `setting`._
 ```{r Ex_b}
 # Delete the comment '#' symbol at the start of the next line and complete the code.
 
-#visitors %>% count(_____, _____)
+visitors |> count(region)
+visitors %>% count(admission, setting)
 ```
 
 
@@ -77,9 +78,9 @@ visitors %>% arrange(desc(n_2022))
 
 _What are the top 10 most visited attractions in 2021?_
 ```{r Ex_c}
-#visitors %>% 
-#  arrange(____(____)) %>%
-#  head(n = ____)
+visitors %>% 
+  arrange(desc(n_2021)) %>%
+  head(n = 10)
 ```
 
 ## Question 4
@@ -96,7 +97,7 @@ visitors %>% filter(attraction == "National Museum of Scotland")
 _Which attraction had exactly 565,772 visitors in 2022?_
 
 ```{r Ex_d}
-#visitors %>% filter(___ == ____)
+visitors %>% filter(n_2022 == 565772)
 ```
 
 ### Exercise e.
@@ -104,9 +105,9 @@ _Which attraction had exactly 565,772 visitors in 2022?_
 _How many attraction had more than 1 million visitors in 2022?_
 
 ```{r Ex_e}
-#visitors %>% 
-#  filter(____) %>%
-#  count()
+visitors %>% 
+  filter(n_2022 > 1000000) %>%
+  count()
 ```
 
 ## Question 5
@@ -129,11 +130,11 @@ visitors %>%
 _How many attractions had between 50,000 and 100,000 visitors in 2022?_
 
 ```{r Ex_f}
-#visitors %>% 
-#  ____(
-#    ______,
-#    ______ ) %>%
-#  count()
+visitors %>% 
+  filter(
+    n_2022 > 50000,
+    n_2022 <100000 ) %>%
+  count()
 ```
 
 ### Exercise g.
@@ -141,9 +142,9 @@ _How many attractions had between 50,000 and 100,000 visitors in 2022?_
 _How many regions have more than 50 tourist attraction in the data set? (Hint: You will need to tabulate the data before filtering.)_
 
 ```{r Ex_g}
-#visitors %>% 
-#  _____(region) %>%
-#  filter(______)
+visitors %>% 
+  count(region) %>%
+  filter(n > 50)
 ```
 
 
@@ -168,11 +169,11 @@ visitors %>%
 _Perform the same calculation for the 2021 admissions data._
 
 ```{r Ex_h}
-#visitors %>% 
-#  ______(
-#    __________,
-#    __________
-#  )
+visitors %>% 
+  summarise(
+    mean_2021 = mean(n_2021, na.rm = TRUE),
+    median_2021 = median(n_2021, na.rm = TRUE)
+  )
 ```
 
 All values in the output are `NA`!
@@ -181,7 +182,7 @@ All values in the output are `NA`!
 
 _What does `NA` stand for and why are you getting this as your answer to the previous question._
 
-**Write your answer here**
+**NA is used to represent variables whose data is "not available"**
 
 
 
@@ -245,8 +246,9 @@ _How many tourist attractions are there in each of the 4 nations? From this, dis
 
 
 ```{r Ex_l}
-#________ %>%
-#  ______(_______)
+visitors_with_nations %>%
+  group_by(nation) |> 
+  count()
 ```
 
 
@@ -258,9 +260,14 @@ _How many tourist attractions are there in each of the 4 nations? From this, dis
 _Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?_
 
 ```{r Ex_m}
-# Write your code here
-
-
+visitors_with_nations |> 
+  select(nation, admission) |> 
+  group_by(nation) |>
+  summarise(
+    tot_atrcn = n(),
+    fr_atrcn = sum(admission == "Free"),
+    ratip = fr_atrcn *100 / tot_atrcn
+    )
 ```
 
 
@@ -269,8 +276,22 @@ _Within each of the 4 nations, what is the proportion of tourist attractions tha
 _Calculate the percentage change in visitor admissions from 2021 to 2022. Of the tourist attractions in Scotland, sort into increasing numerical order the types of admission charges based on the mean percentage change in visitor numbers._
 
 ```{r Ex_n}
-# Write your code here
+visitors_with_nations |> 
+  select(nation, n_2021, n_2022) |> 
+  summarise(
+    title <- "Last column is the % change",
+    tot_2021 = sum(n_2021, na.rm = "True"),
+    tot_2022 = sum(n_2022, na.rm = "True"),
+    p_change = (tot_2022 - tot_2021)*100 / tot_2021
+  )
 
-
-
+visitors_with_nations |> 
+  filter(nation == "Scotland") |>
+  group_by(admission) |>
+  summarise(
+    v_2021 = sum(n_2021, na.rm = TRUE),
+    v_2022 = sum(n_2022, na.rm = TRUE),
+    ptg_ch = (v_2022 - v_2021) * 100 / v_2021
+  ) |>
+  arrange(ptg_ch)
 ```
